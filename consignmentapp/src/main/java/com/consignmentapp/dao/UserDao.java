@@ -6,15 +6,58 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDao {
+	
+	private JdbcConfig dbconfig = new JdbcConfig();
+	
 
+	public List<UserDto> getUsers(){
+		List<UserDto> userList = new ArrayList();
+		
+		try {
+			Connection con  = dbconfig.initConnection();
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from userdetails");
+			while (rs.next()) {
+				UserDto user = new UserDto();
+				user.setUid(rs.getInt("uid"));
+				user.setUsername(rs.getString("uname"));
+				user.setAddress(rs.getString("address"));
+				user.setRole(rs.getString("role"));
+				user.setPassword(rs.getString("password"));
+				userList.add(user);
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return userList;
+		
+	}
+	
+	public List<UserDto> deleteUser(String username){
+		
+		try {
+			Connection con  = dbconfig.initConnection();
+			PreparedStatement stmt = con.prepareStatement("delete from userdetails where uname=? ");
+			stmt.setString(1, username);
+			stmt.execute();
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return getUsers();
+		
+	}
+	
 	public String saveUser(String username,String address,String role,String password) {
 		
 		String respmsg = "";
 		try {
-			JdbcConfig config = new JdbcConfig();
-			Connection con = config.initConnection();
+			Connection con = dbconfig.initConnection();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("select count(uid) from userdetails");
 			rs.next();
