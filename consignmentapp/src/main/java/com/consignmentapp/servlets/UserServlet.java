@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.consignmentapp.dao.UserDao;
 import com.consignmentapp.dao.UserDto;
@@ -25,54 +26,68 @@ public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String path = request.getServletPath();
-		
-		switch (path) {
-		case "/save":
-			String username = request.getParameter("username");
-			String address = request.getParameter("addr");
-			String role = request.getParameter("role");
-			String password = request.getParameter("password");
+		HttpSession session =  request.getSession();
+		Boolean isLoogedIn=  session.getAttribute("isLoggedin")!=null?(Boolean)session.getAttribute("isLoggedin"):false;
+		if(isLoogedIn) {
+			switch (path) {
+			case "/save":
+				String username = request.getParameter("username");
+				String address = request.getParameter("addr");
+				String role = request.getParameter("role");
+				String password = request.getParameter("password");
 
-			String respMsg = dao.saveUser(username, address, role, password);
-			List<UserDto> userslist = dao.getUsers();
-			request.setAttribute("jspusers", userslist);
-			 RequestDispatcher rd= request.getRequestDispatcher("userlist.jsp");
-				rd.forward(request, response);
-			break;
+				String respMsg = dao.saveUser(username, address, role, password);
+				List<UserDto> userslist = dao.getUsers();
+				request.setAttribute("jspusers", userslist);
+				 RequestDispatcher rd= request.getRequestDispatcher("/userlist");
+					rd.forward(request, response);
+				break;
 
-		default:
-			break;
+			default:
+				break;
+			}
+		}else {
+			RequestDispatcher rd= request.getRequestDispatcher("/login.jsp");
+			rd.forward(request, response);
 		}
+		
 		
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// String path = request.getServletPath();
 		  String path= request.getParameter("path");
-		  System.out.println(path);
-		 switch (path) {
-		case "list":
-			List<UserDto> userslist = dao.getUsers();
-			request.setAttribute("jspusers", userslist);
-			RequestDispatcher rd= request.getRequestDispatcher("userlist.jsp");
-			rd.forward(request, response);
-			break;
-			case "delete":
-				String username = request.getParameter("name");
-				List<UserDto> updatedlist = dao.deleteUser(username);
-				request.setAttribute("jspusers", updatedlist);
-				RequestDispatcher rd2= request.getRequestDispatcher("userlist.jsp");
-				rd2.forward(request, response);
-				break;
-			case "adduser":
-				RequestDispatcher rd1= request.getRequestDispatcher("userdetails.jsp");
-				rd1.forward(request, response);
-				break;
-		default:
-			break;
-		}
+			HttpSession session =  request.getSession();
+			Boolean isLoogedIn=  session.getAttribute("isLoggedin")!=null?(Boolean)session.getAttribute("isLoggedin"):false;
+		  if(isLoogedIn) {
+			  switch (path) {
+				case "list":
+					List<UserDto> userslist = dao.getUsers();
+					request.setAttribute("jspusers", userslist);
+					RequestDispatcher rd= request.getRequestDispatcher("/userlist");
+					rd.forward(request, response);
+					break;
+					case "delete":
+						String username = request.getParameter("name");
+						List<UserDto> updatedlist = dao.deleteUser(username);
+						request.setAttribute("jspusers", updatedlist);
+						RequestDispatcher rd2= request.getRequestDispatcher("/userlist");
+						rd2.forward(request, response);
+						break;
+					case "adduser":
+						RequestDispatcher rd1= request.getRequestDispatcher("/userdetails");
+						rd1.forward(request, response);
+						break;
+				default:
+					break;
+				}
+		  }else {
+			  RequestDispatcher rd= request.getRequestDispatcher("/login.jsp");
+				rd.forward(request, response);
+		  }
+		  
+		
 		
 	}
 	

@@ -13,6 +13,24 @@ public class UserDao {
 	
 	private JdbcConfig dbconfig = new JdbcConfig();
 	
+	public boolean getuserByName(String username,String password) {
+		boolean isUserValid = false;
+		try {
+			Connection con  = dbconfig.initConnection();
+			PreparedStatement stmt = con.prepareStatement("select  * from userdetails where uname=? and password=?");
+			stmt.setString(1, username);
+			stmt.setString(2, password);
+			ResultSet rs = stmt.executeQuery(); 
+			rs.next();
+			if(rs.getString("uname").equalsIgnoreCase(username) && rs.getString("password").equalsIgnoreCase(password)) {
+				isUserValid = true;
+			}
+			} catch (SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		return isUserValid;
+	}
+	
 
 	public List<UserDto> getUsers(){
 		List<UserDto> userList = new ArrayList();

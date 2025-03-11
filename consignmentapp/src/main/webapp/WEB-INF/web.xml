@@ -1,7 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>consignmentapp</display-name>
-  <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>consignmentapp</display-name>
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>index</servlet-name>
+		<jsp-file>/WEB-INF/index.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>index</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>addconsignment</servlet-name>
+		<jsp-file>/WEB-INF/addconsignment.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>addconsignment</servlet-name>
+		<url-pattern>/addconsignment</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>consignmnets</servlet-name>
+		<jsp-file>/WEB-INF/consignmnets.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>consignmnets</servlet-name>
+		<url-pattern>/consignmnets</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>userdetails</servlet-name>
+		<jsp-file>/WEB-INF/userdetails.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userdetails</servlet-name>
+		<url-pattern>/userdetails</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>userlist</servlet-name>
+		<jsp-file>/WEB-INF/userlist.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>userlist</servlet-name>
+		<url-pattern>/userlist</url-pattern>
+	</servlet-mapping>
 </web-app>
