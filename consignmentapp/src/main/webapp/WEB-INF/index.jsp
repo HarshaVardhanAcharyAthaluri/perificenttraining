@@ -13,6 +13,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="/header.jsp"></jsp:include>
 	<div class="homewrapper">
 		<button>
 			<a href="/consignmentapp/consignmentservlet?path=consignmentlist">CONSIGNMENT</a>

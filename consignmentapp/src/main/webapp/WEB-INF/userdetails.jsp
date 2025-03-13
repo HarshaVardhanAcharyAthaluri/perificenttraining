@@ -12,6 +12,7 @@
 </head>
 <body>
 <h1 style="text-align: center;">User Details</h1>
+<jsp:include page="/header.jsp"></jsp:include>
 	<div class="formwrapper">
 	
 		<form action="/consignmentapp/save" method="post">

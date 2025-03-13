@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1 style="text-align: center;">CONSIGNMENT DETAILS</h1>
-
+<jsp:include page="/header.jsp"></jsp:include>
 	<div class="formwrapper">
 		<form action="/consignmentapp/consignmentservlet?path=consignmentsave" method="post">
 			<table>

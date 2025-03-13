@@ -19,6 +19,7 @@ table, tr, td, th {
 </head>
 <body>
 	<h1 style="text-align: center;">Consignment Details</h1>
+	<jsp:include page="/header.jsp"></jsp:include>
 	<div class="formwrapper">
 		<button>
 			<a href="/consignmentapp/consignmentservlet?path=addconsignment">ADD

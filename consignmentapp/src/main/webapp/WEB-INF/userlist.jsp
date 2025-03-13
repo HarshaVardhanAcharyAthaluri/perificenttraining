@@ -18,6 +18,7 @@ border: solid 1px;
 </head>
 <body>
 	<h1 style="text-align: center;">User Details</h1>
+	<jsp:include page="/header.jsp"></jsp:include>
 	<div class="formwrapper">
 
 		<table>
