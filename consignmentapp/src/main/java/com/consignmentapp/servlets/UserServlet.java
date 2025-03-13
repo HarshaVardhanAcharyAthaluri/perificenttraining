@@ -25,12 +25,10 @@ public class UserServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String path = request.getServletPath();
 		HttpSession session =  request.getSession();
 		Boolean isLoogedIn=  session.getAttribute("isLoggedin")!=null?(Boolean)session.getAttribute("isLoggedin"):false;
 		if(isLoogedIn) {
-			switch (path) {
-			case "/save":
+
 				String username = request.getParameter("username");
 				String address = request.getParameter("addr");
 				String role = request.getParameter("role");
@@ -41,11 +39,6 @@ public class UserServlet extends HttpServlet {
 				request.setAttribute("jspusers", userslist);
 				 RequestDispatcher rd= request.getRequestDispatcher("/userlist");
 					rd.forward(request, response);
-				break;
-
-			default:
-				break;
-			}
 		}else {
 			RequestDispatcher rd= request.getRequestDispatcher("/login.jsp");
 			rd.forward(request, response);

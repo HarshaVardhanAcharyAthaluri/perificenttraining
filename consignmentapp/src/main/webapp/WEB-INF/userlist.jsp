@@ -20,6 +20,12 @@ border: solid 1px;
 	<h1 style="text-align: center;">User Details</h1>
 	<jsp:include page="/header.jsp"></jsp:include>
 	<div class="formwrapper">
+		<button>
+			<a href="/consignmentapp/userdetails">
+				ADD USER</a>
+		</button>
+	</div>
+	<div class="formwrapper">
 
 		<table>
 			<tr>

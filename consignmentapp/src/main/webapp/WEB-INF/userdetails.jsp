@@ -15,7 +15,7 @@
 <jsp:include page="/header.jsp"></jsp:include>
 	<div class="formwrapper">
 	
-		<form action="/consignmentapp/save" method="post">
+		<form action="/consignmentapp/userservlet" method="post">
 			<table>
 				<tr>
 					<td>USERNAME</td>

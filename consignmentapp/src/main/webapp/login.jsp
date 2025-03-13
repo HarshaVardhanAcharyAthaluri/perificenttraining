@@ -19,9 +19,8 @@ color: teal;
 </style>
 </head>
 <body>
-
 <h1 style="text-align: center;">Login Details</h1>
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="/header.jsp"></jsp:include>
 <div class="loginerror">${loginfailed}</div>
 <div class="logout">${logoutmsg}</div>
 	<div class="formwrapper">
@@ -30,11 +29,11 @@ color: teal;
 			<table>
 				<tr>
 					<td>USERNAME</td>
-					<td><input type="text" name="username" value="vivek"></td>
+					<td><input type="text" name="username"></td>
 				</tr>
 				<tr>
 				<td>PASSWORD</td>
-					<td><input type="password" name="password" value="12345"></td>
+					<td><input type="password" name="password"></td>
 				</tr>
 				<tr>
 				<td></td>
