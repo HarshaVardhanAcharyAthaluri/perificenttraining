@@ -14,6 +14,7 @@ table, tr, td, th {
 .formwrapper {
 	display: flex;
 	justify-content: center;
+	margin-bottom: 20px;
 }
 </style>
 </head>
