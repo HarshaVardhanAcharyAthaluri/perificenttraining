@@ -1,0 +1,39 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<style>
+.userwarpper{
+margin-top: 20px;
+margin-bottom: 30px;
+}
+table,tr,td,th {
+	border: solid 1px;
+}
+.userbttn{
+margin-left:215px
+}
+</style>
+</head>
+
+<div>
+<center>
+<h1 class="userwarpper">User List</h1>
+	<table class="userwarpper">
+		<tr>
+			<th>UID</th>
+			<th>NAME</th>
+			<th>ADRESS</th>
+			<th>EMAIL</th>
+		</tr>
+		<tr th:each="user:${users}">
+			<td th:text="${user.uid}"></td>
+			<td th:text="${user.name}"></td>
+			<td th:text="${user.addr}"></td>
+			<td th:text="${user.email}"></td>
+		</tr>
+	</table>
+<span class="userbttn"><button><a href="/adduser">NEW USER</a></button></span>
+</center>
+</div>
+
+
+</html>
